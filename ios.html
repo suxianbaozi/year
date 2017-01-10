@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML5音频可视化频谱跳动代码 - 【科e互联】</title>
+    <meta name="keywords" content="HTML5代码,HTML5音符,HTML5播放器,HTML5动画,网页播放器"/>
+    <meta name="description" content="一款HTML5音频可视化频谱跳动代码下载，HTML5酷炫跳动音符制作，该代码特效适用于音乐网站建设、艺术网站建设网页音乐播放器插件。"/>
+</head>
+<body class="keBody">
+<h1 class="keTitle">HTML5音频可视化频谱跳动代码</h1>
+<div class="kePublic">
+    <!--效果html开始-->
+    <canvas id='canvas' width="800" height="350"></canvas>
+    <br>
+    <br>
+    <audio  crossOrigin="anonymous"  src="http://static.qjhtv.com/disco.mp3" id="audio" controls loop>audio element not supported</audio>
+    <script src="/socket.io/socket.io.js"></script>
+
+
+    <script src="ios.js"></script>
+
+    <script>
+        var sockets = io();
+        function onArrayNew(array) {
+            sockets.emit('on-data',array);
+        }
+    </script>
+    <!--效果html结束-->
+    <div class="clear"></div>
+</div>
+</body>
+</html>

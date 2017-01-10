@@ -15,6 +15,9 @@ app.get('/remote', function(req, res){
     res.sendFile(__dirname + '/remote.html');
 });
 
+app.get('/ios', function(req, res){
+    res.sendFile(__dirname + '/ios.html');
+});
 app.use(express.static(__dirname+'/public'));
 
 
