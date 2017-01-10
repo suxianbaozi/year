@@ -1,0 +1,31 @@
+{
+  "name": "year",
+  "version": "1.0.0",
+  "description": "水滴IM websocket 服务器",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.10.2",
+    "generic-pool": "^3.0.0-beta.1",
+    "hiredis": "^0.5.0",
+    "redis": "^2.6.2",
+    "socket.io": "^1.5.1",
+    "socket.io-client": "^1.5.1",
+    "uuid": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node year",
+    "start": "node year.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@tech.pingansec.com:wangqs/year.git"
+  },
+  "keywords": [
+    "IM",
+    "websocket",
+    "redis"
+  ],
+  "author": "王秋石",
+  "license": "ISC"
+}

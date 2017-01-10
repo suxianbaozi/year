@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>year</title>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        .container {
+            background-color: red;
+            height: 100%;
+            width: 100%;
+        }
+        .col {
+            height:100%;
+            background-color: green;
+        }
+        .row {
+            width: 100%;
+            background-color: antiquewhite;
+            border: 1px solid white;
+            line-height: 100%;
+            text-align: center;
+            display: block;
+        }
+        .row:hover {
+            border: none;
+        }
+        .row:focus {
+            border: none;
+        }
+    </style>
+    <link rel="stylesheet" rev="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+
+
+<input type="file" id="uploadedFile"    >
+<span class="info" id="info"></span>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="zepto.js"></script>
+<script src="audio.js"></script>
+
+<script>
+    function Client(){
+        this.socket =  null;
+        this.audio = null;
+    }
+    Client.prototype = {
+        init:function(){
+            this.socket = io();
+            this.audio = new Visualizer();
+            this.audio.ini();
+            this.audio.onArrayNew = function(array) {
+                this.socket.emit('on-data',array);
+            }.bind(this);
+        }
+    };
+    new Client().init();
+</script>
+
+</body>
+</html>

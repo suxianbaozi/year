@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>year</title>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+            background-color: black;
+        }
+        .container {
+            background-color: red;
+            height: 100%;
+            width: 100%;
+        }
+        .col {
+            height:100%;
+            background-color: green;
+        }
+        .row {
+            width: 100%;
+            background-color: antiquewhite;
+            border: 1px solid white;
+            line-height: 100%;
+            text-align: center;
+            display: block;
+        }
+        .row:hover {
+            border: none;
+        }
+        .row:focus {
+            border: none;
+        }
+    </style>
+    <link rel="stylesheet" rev="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+<div  class="box-horizontal container">
+    <div class="flex1 col box-vertical">
+        <div table="0" class="row flex1 test">1桌</div>
+        <div table="1" class="row flex1">2桌</div>
+        <div table="2" class="row flex1">3桌</div>
+    </div>
+    <div class="flex1 col box-vertical">
+        <div table="3" class="row flex1">4桌</div>
+        <div table="4" class="row flex1">5桌</div>
+        <div table="5" class="row flex1">6桌</div>
+    </div>
+    <div class="flex1 col box-vertical">
+        <div table="6" class="row flex1">7桌</div>
+        <div table="7" class="row flex1">8桌</div>
+        <div table="8" class="row flex1">9桌</div>
+    </div>
+</div>
+<div class="container">
+</div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="zepto.js"></script>
+
+<script>
+    function Client(){
+        this.socket =  null;
+        this.testDom = $(document.body);
+        this.colorList = [
+            '#000000',
+            '#454545',
+            '#7d7d7d',
+            '#bfbfbf',
+            '#ffffff'
+        ];
+        this.table = 0;
+    }
+    Client.prototype = {
+        init:function(){
+            this.socket = io();
+            this.socket.emit('set-client', {
+                'client': true
+            });
+            $('.row').on('touchstart',function(e) {
+                this.table = parseInt($(e.currentTarget).attr('table'));
+                $('.container').hide();
+            }.bind(this));
+
+            this.socket.on('on-data',function(data){
+                this.show(data);
+            }.bind(this))
+        },
+        getColorByRank:function(rank){
+            var index = Math.floor(this.colorList.length * rank / 256);
+            return this.colorList[index];
+        },
+        show:function(data) {
+//            $(document.body).css('background-color',color);
+//            window.setTimeout(function(){
+//
+//            },200);
+
+
+            var rank = data[this.table];
+
+            rank = Math.floor(Math.pow((0.024867943942686262*rank),3));
+
+            var color = rank.toString(16);
+            var colorString = '#'+color+color+color;
+            this.testDom.css('background-color',colorString);
+        }
+    };
+
+
+    new Client().init();
+</script>
+
+</body>
+</html>
