@@ -15,7 +15,7 @@
             background-color: black;
         }
         .container {
-            background-color: black;
+            background-color: red;
             height: 100%;
             width: 100%;
         }
@@ -41,8 +41,7 @@
     <link rel="stylesheet" rev="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
-<div class="container">
-</div>
+
 
 
 <script src="/socket.io/socket.io.js"></script>
@@ -68,7 +67,6 @@
                 'client': true
             });
 
-
             this.socket.on('on-data',function(data){
                 this.show(data);
             }.bind(this))
@@ -78,10 +76,6 @@
             return this.colorList[index];
         },
         show:function(data) {
-//            $(document.body).css('background-color',color);
-//            window.setTimeout(function(){
-//
-//            },200);
 
 
             var rank = data[this.table];
