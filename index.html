@@ -67,10 +67,7 @@
             this.socket.emit('set-client', {
                 'client': true
             });
-            $('.row').on('touchstart',function(e) {
-                this.table = parseInt($(e.currentTarget).attr('table'));
-                $('.container').hide();
-            }.bind(this));
+
 
             this.socket.on('on-data',function(data){
                 this.show(data);
